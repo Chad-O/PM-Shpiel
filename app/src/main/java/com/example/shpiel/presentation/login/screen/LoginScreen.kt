@@ -10,10 +10,9 @@ import androidx.navigation.NavHostController
 import com.example.shpiel.MainActivity
 import com.example.shpiel.presentation.login.components.LoginFields
 
-@Preview
 @Composable
 fun LoginScreen(
-    onClick : (String) -> Unit
+    onClick : (String) -> Unit = {}
 ){
     val mcontext = LocalContext.current;
     var name = remember {
