@@ -27,8 +27,7 @@ fun LoginScreen(
         password = password.value,
         onNameChange = {name.value = it},
         onPasswordChange = {password.value = it},
-        onLoginClick = {mcontext.startActivity(Intent(mcontext, MainActivity::class.java).
-            putExtra("name",it))}
+        onLoginClick = {onClick}
     )
 }
 

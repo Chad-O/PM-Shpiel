@@ -1,6 +1,8 @@
 package com.example.shpiel
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.shpiel.main.components.Navegacion
 import com.example.shpiel.ui.theme.ShpielTheme
 import com.example.shpiel.presentation.login.screen.LoginScreen
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +34,20 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ShpielTheme {
-        LoginScreen()
+        // TODO: IMPORTANTE, SE COMENTÓ LO DE ABAJO PORQUE ERA UNA PRUEBA.
+//        val db = Firebase.firestore
+//        val user = hashMapOf(
+//            "first" to "Ada",
+//            "last" to "Lovelace",
+//            "born" to 1815
+//        )
+//        db.collection("users")
+//            .add(user)
+//            .addOnSuccessListener { documentReference ->
+//                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+//            }
+//            .addOnFailureListener { e ->
+//                Log.w(TAG, "Error adding document", e)
+//            }
     }
 }
