@@ -19,7 +19,7 @@ fun LoginScreen(
         mutableStateOf("")
     }
     var password = remember{
-        mutableStateOf(" ")
+        mutableStateOf("")
     }
     LoginFields(
         name = name.value,

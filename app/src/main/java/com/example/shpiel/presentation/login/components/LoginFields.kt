@@ -9,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.MonotonicFrameClock
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -17,6 +18,7 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -24,14 +26,14 @@ import androidx.navigation.NavHostController
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun LoginFields(
-
     name:String,
-    password: String,
+    password:String,
     onNameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLoginClick: (String) -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
+    var passwordVisible =  { mutableStateOf(false) }
     //La columna para dividirlo de la manera definida necesita contener 2 columnas hijas
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -75,7 +77,7 @@ fun LoginFields(
                 horizontalAlignment =  Alignment.CenterHorizontally
             ) {
 
-                OutlinedTextField(modifier = Modifier
+                TextField(modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 50.dp, top = 0.dp, end = 50.dp, bottom = 0.dp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number,
@@ -88,19 +90,18 @@ fun LoginFields(
                         focusedBorderColor = Color.Green,
                         unfocusedBorderColor = Color.Gray),
                     label = { Text(text = "Código de Alumno")})
-                OutlinedTextField(modifier = Modifier
+                TextField(modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 50.dp, top = 0.dp, end = 50.dp, bottom = 0.dp),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number,
+                    .padding(start = 50.dp, top = 20.dp, end = 50.dp, bottom = 0.dp),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password,
                         imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(
                         onDone = {keyboardController?.hide()}),
-                    value = name,
-                    onValueChange = onNameChange,
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = Color.Green,
-                        unfocusedBorderColor = Color.Gray),
-                    label = { Text(text = "Contraseña")})
+                    value = password,
+                    onValueChange = onPasswordChange,
+                    label = { Text(text = "Contraseña")},
+                    visualTransformation = PasswordVisualTransformation()
+                )
             }
         }
         //Bu! Fantasma
@@ -156,7 +157,7 @@ fun LoginFields(
 fun prueba1(){
     LoginFields(
         name = "Javier",
-        password = "123",
+        password = "",
         onNameChange = {},
         onPasswordChange = {},
         onLoginClick = {}
