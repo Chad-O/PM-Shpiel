@@ -1,4 +1,4 @@
-package com.example.shpiel.main.components
+package com.example.shpiel.presentation.main.components
 
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
-import com.example.shpiel.main.navigation.NavigationGraph
+import com.example.shpiel.presentation.main.navigation.NavigationGraph
 
 import kotlinx.coroutines.launch
 

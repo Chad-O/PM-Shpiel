@@ -1,11 +1,11 @@
-package com.example.shpiel.main.navigation
+package com.example.shpiel.presentation.main.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.shpiel.main.screen.Principal
+import com.example.shpiel.presentation.main.screen.Principal
 
 @Composable
 fun NavigationGraph(

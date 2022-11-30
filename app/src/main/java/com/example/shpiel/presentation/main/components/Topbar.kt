@@ -1,4 +1,4 @@
-package com.example.shpiel.main.components
+package com.example.shpiel.presentation.main.components
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

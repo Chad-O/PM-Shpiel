@@ -12,7 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.shpiel.main.components.Navegacion
+import com.example.shpiel.presentation.main.components.Navegacion
 import com.example.shpiel.ui.theme.ShpielTheme
 import com.example.shpiel.presentation.login.screen.LoginScreen
 import com.google.firebase.firestore.ktx.firestore
