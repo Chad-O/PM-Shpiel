@@ -1,5 +1,6 @@
 package com.example.shpiel.presentation.signup.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
@@ -27,7 +28,8 @@ fun SignupFields(
     onCodigoChange: (String)->Unit,
     onNameChange: (String)->Unit,
     onAliasChange: (String)->Unit,
-    onPasswordChange: (String)->Unit
+    onPasswordChange: (String)->Unit,
+    onClick: () -> Unit
 )
 {
     Column(
@@ -57,17 +59,17 @@ fun SignupFields(
         CustomTextField(
             value = name,
             onValueChange = onNameChange,
-            label = "Codigo de Alumno"
+            label = "Nombre Completo"
         )
         CustomTextField(
             value = alias,
             onValueChange = onAliasChange,
-            label = "Codigo de Alumno"
+            label = "Alias/Apodo"
         )
         CustomTextField(
             value = password,
             onValueChange = onPasswordChange,
-            label = "Codigo de Alumno",
+            label = "Contraseña",
             isPasswordField = true,
             isPasswordVisible = false
         )
@@ -76,24 +78,11 @@ fun SignupFields(
                 .fillMaxWidth()
                 .padding(horizontal = 60.dp)
                 .padding(top = 30.dp),
-            onClick = { /*TODO*/ }) {
-            Text(text = "Registrate")
+            onClick = { onClick() }) {
+            Text(text = "Registrate",
+            )
 
         }
     }
 
-}
-@Composable
-@Preview(showBackground = true)
-fun prueba1(){
-    SignupFields(
-        codigo = "",
-        name = "Javier",
-        alias = "",
-        password = "jlkjlk",
-        onNameChange = {},
-        onPasswordChange = {},
-        onAliasChange = {},
-        onCodigoChange = {}
-    )
 }
