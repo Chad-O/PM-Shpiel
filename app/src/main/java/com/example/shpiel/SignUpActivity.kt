@@ -19,10 +19,3 @@ class SignupActivity:ComponentActivity() {
         finish()
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun preview() {
-    SignupScreen()
-}
-
