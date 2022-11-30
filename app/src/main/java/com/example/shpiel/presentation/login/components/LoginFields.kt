@@ -30,7 +30,8 @@ fun LoginFields(
     password:String,
     onNameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onLoginClick: (String) -> Unit
+    onLoginClick: (String) -> Unit,
+    onRegisterClick: (String) -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
     var passwordVisible =  { mutableStateOf(false) }
@@ -45,12 +46,12 @@ fun LoginFields(
                 .fillMaxWidth()
                 .weight(0.5f),
         ){
-//Imagen
+//Buu! Otra fantasma. Hice las fantasmas en desorden jiji
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment =  Alignment.CenterHorizontally
             ) {
-                Text(text = "Row 1")
+
             }
         }
         Row(
@@ -115,7 +116,6 @@ fun LoginFields(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment =  Alignment.CenterHorizontally
             ) {
-                Text(text = "Row Fantasma")
             }
         }
         Row(
@@ -131,9 +131,9 @@ fun LoginFields(
                 horizontalAlignment =  Alignment.CenterHorizontally
             ) {
                 Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 70.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 70.dp),
                     onClick = {
                         if(name.trim().isNotBlank()){
                             onLoginClick(name)
@@ -144,14 +144,13 @@ fun LoginFields(
                 }
                 Text(
                     text = "Registrate",
+                    modifier = Modifier.clickable { onRegisterClick }
                 )
             }
 
         }
     }
 }
-
-
 @Composable
 @Preview(showBackground = true)
 fun prueba1(){
@@ -160,6 +159,7 @@ fun prueba1(){
         password = "",
         onNameChange = {},
         onPasswordChange = {},
-        onLoginClick = {}
+        onLoginClick = {},
+        onRegisterClick = {}
     )
 }

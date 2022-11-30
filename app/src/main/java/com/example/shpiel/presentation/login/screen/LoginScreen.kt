@@ -12,7 +12,8 @@ import com.example.shpiel.presentation.login.components.LoginFields
 
 @Composable
 fun LoginScreen(
-    onClick : (String) -> Unit = {}
+    onClick : (String) -> Unit = {},
+    onRegister: (String) -> Unit = {}
 ){
     val mcontext = LocalContext.current;
     var name = remember {
@@ -26,7 +27,8 @@ fun LoginScreen(
         password = password.value,
         onNameChange = {name.value = it},
         onPasswordChange = {password.value = it},
-        onLoginClick = {onClick}
+        onLoginClick = {onClick},
+        onRegisterClick = {onRegister}
     )
 }
 
