@@ -49,6 +49,10 @@ fun DrawerMenu(
             Text(
                 text = "Principal"
             )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ){
             Text(
                 text = "Participaciones"
             )

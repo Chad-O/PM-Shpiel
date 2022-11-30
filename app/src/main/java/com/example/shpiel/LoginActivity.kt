@@ -21,7 +21,7 @@ class LoginActivity : ComponentActivity() {
             LoginScreen(onClick = paso, onRegister = registro)
         }
     }
-    private val paso : (String) -> Unit = {
+    val paso : (String) -> Unit = {
             name:String -> val intent = Intent(this, MainActivity::class.java);
         startActivity ( intent);
         finish()

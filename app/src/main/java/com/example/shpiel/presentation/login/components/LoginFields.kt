@@ -1,5 +1,6 @@
 package com.example.shpiel.presentation.login.components
 
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -15,6 +16,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.shpiel.SignupActivity
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -34,6 +37,7 @@ fun LoginFields(
     onRegisterClick: () -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current
     var passwordVisible =  { mutableStateOf(false) }
     //La columna para dividirlo de la manera definida necesita contener 2 columnas hijas
     Column(
@@ -143,8 +147,7 @@ fun LoginFields(
                     Text(text = "Ingresar")
                 }
                 Text(
-                    text = "Registrate",
-                    modifier = Modifier.clickable { onRegisterClick() }
+                    text = "Registrate"
                 )
             }
 
