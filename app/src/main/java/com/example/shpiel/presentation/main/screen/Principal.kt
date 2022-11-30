@@ -1,4 +1,4 @@
-package com.example.shpiel.main.screen
+package com.example.shpiel.presentation.main.screen
 
 import androidx.compose.runtime.Composable
 
