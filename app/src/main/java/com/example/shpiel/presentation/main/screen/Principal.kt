@@ -27,15 +27,15 @@ fun Principal(){
         Row (
             modifier = Modifier
                 .weight(1f)
-                .background(color = Color.Cyan)
-                .fillMaxHeight(),
+                .background(color = Color(red = 99, green = 24,blue=120))
+                .fillMaxHeight()
+                .clickable {  },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ){
             Icon(imageVector = Icons.Filled.ArrowBack,
             contentDescription = "Flecha izquierda",
-            modifier = Modifier.clickable {}
-                .size(40.dp))
+            modifier = Modifier.size(40.dp))
             Text(
                 text = "Postea",
                 fontSize = 40.sp
@@ -44,8 +44,9 @@ fun Principal(){
         Row (
             modifier = Modifier
                 .weight(1f)
-                .background(color = Color.Magenta)
-                .fillMaxHeight(),
+                .background(color = Color(red = 122, green = 22, blue = 60))
+                .fillMaxHeight()
+                .clickable {  },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
 
@@ -56,8 +57,7 @@ fun Principal(){
             )
             Icon(imageVector = Icons.Filled.ArrowForward,
                 contentDescription = "Flecha derecha",
-                modifier = Modifier.clickable {}
-                    .size(40.dp))
+                modifier = Modifier.size(40.dp))
         }
     }
 }
