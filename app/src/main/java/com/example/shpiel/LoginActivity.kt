@@ -26,15 +26,11 @@ class LoginActivity : ComponentActivity() {
         startActivity ( intent);
         finish()
     }
-    private val registro:(String) -> Unit = {
+    val registro:() -> Unit = {
         intent = Intent(this, SignupActivity::class.java);
         startActivity(intent);
         finish()
     }
 }
 
-@Composable
-@Preview
-fun prueba(){
-    LoginScreen()
-}
+
