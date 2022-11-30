@@ -43,7 +43,6 @@ fun Navegacion(
         scaffoldState = scaffoldState,
         topBar={
             Topbar(
-                name = name.value,
                 onOpenDrawer = openDrawer
             )
         },

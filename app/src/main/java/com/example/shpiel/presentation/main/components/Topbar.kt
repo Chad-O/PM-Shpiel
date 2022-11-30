@@ -11,13 +11,11 @@ import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun Topbar(
-    name: String,
     onOpenDrawer: () -> Unit
 ){
     TopAppBar(
         title = {
-            Text(text = name,
-                textAlign = TextAlign.Center
+            Text(text = ""
             )
         },
         navigationIcon = {
