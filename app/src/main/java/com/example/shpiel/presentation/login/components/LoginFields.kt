@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,7 +31,7 @@ fun LoginFields(
     password:String,
     onNameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onLoginClick: (String) -> Unit,
+    onLoginClick: () -> Unit,
     onRegisterClick: () -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -135,31 +136,21 @@ fun LoginFields(
                                 .fillMaxWidth()
                                 .padding(horizontal = 70.dp),
                     onClick = {
-                        if(name.trim().isNotBlank()){
-                            onLoginClick(name)
-                        }
+                        println("boton")
+                        onLoginClick()
                     }
                 ){
                     Text(text = "Ingresar")
                 }
                 Text(
                     text = "Registrate",
-                    modifier = Modifier.clickable { onRegisterClick() }
+                    modifier = Modifier.clickable {
+                        println("suicidio")
+                        onRegisterClick()
+                    }
                 )
             }
 
         }
     }
-}
-@Composable
-@Preview(showBackground = true)
-fun prueba1(){
-    LoginFields(
-        name = "Javier",
-        password = "",
-        onNameChange = {},
-        onPasswordChange = {},
-        onLoginClick = {},
-        onRegisterClick = {}
-    )
 }
