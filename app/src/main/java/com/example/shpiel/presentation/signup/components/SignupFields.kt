@@ -2,15 +2,20 @@ package com.example.shpiel.presentation.signup.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.shpiel.presentation.login.components.CustomTextField
 import com.example.shpiel.presentation.login.components.LoginFields
 
 @Composable
@@ -44,40 +49,31 @@ fun SignupFields(
                 textAlign = TextAlign.Left
             )
         }
-        TextField(
+        CustomTextField(
             value = codigo,
             onValueChange = onCodigoChange,
-            label = { Text(text = "Codigo de alumno")},
-            modifier = Modifier
-                .height(60.dp)
-                .padding(bottom = 10.dp)
+            label = "Codigo de Alumno"
             )
-        TextField(
+        CustomTextField(
             value = name,
             onValueChange = onNameChange,
-            label = { Text(text = "Nombre")},
-            modifier = Modifier
-                .height(60.dp)
-                .padding(bottom = 10.dp)
+            label = "Codigo de Alumno"
         )
-        TextField(
+        CustomTextField(
             value = alias,
             onValueChange = onAliasChange,
-            label = { Text(text = "Alias/Apodo")},
-            modifier = Modifier
-                .height(60.dp)
-                .padding(bottom = 10.dp)
+            label = "Codigo de Alumno"
         )
-        TextField(
+        CustomTextField(
             value = password,
             onValueChange = onPasswordChange,
-            label = { Text(text = "Contraseña")},
-            modifier = Modifier
-                .height(60.dp)
-                .padding(bottom = 10.dp)
+            label = "Codigo de Alumno",
+            isPasswordField = true,
+            isPasswordVisible = false
         )
         Button(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 60.dp)
                 .padding(top = 30.dp),
             onClick = { /*TODO*/ }) {
@@ -94,7 +90,7 @@ fun prueba1(){
         codigo = "",
         name = "Javier",
         alias = "",
-        password = "",
+        password = "jlkjlk",
         onNameChange = {},
         onPasswordChange = {},
         onAliasChange = {},

@@ -31,7 +31,7 @@ fun LoginFields(
     onNameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLoginClick: (String) -> Unit,
-    onRegisterClick: (String) -> Unit
+    onRegisterClick: () -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
     var passwordVisible =  { mutableStateOf(false) }
@@ -144,7 +144,7 @@ fun LoginFields(
                 }
                 Text(
                     text = "Registrate",
-                    modifier = Modifier.clickable { onRegisterClick }
+                    modifier = Modifier.clickable { onRegisterClick() }
                 )
             }
 
