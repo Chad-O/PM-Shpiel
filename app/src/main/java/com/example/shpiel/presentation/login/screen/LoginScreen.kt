@@ -6,28 +6,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.shpiel.MainActivity
 import com.example.shpiel.presentation.login.components.LoginFields
+import com.example.shpiel.presentation.login.viewmodels.LoginViewModel
+import com.example.shpiel.presentation.login.viewmodels.LoginViewModelFactory
 
 @Composable
 fun LoginScreen(
-    onClick : () -> Unit,
-    onRegister: () -> Unit
+    onLoginSuccess : (String) -> Unit,
+    onRegister: () -> Unit,
+    vm : LoginViewModel = viewModel( factory =  LoginViewModelFactory(onLoginSuccess))
 ){
-    var name = remember {
-        mutableStateOf("")
-    }
-    var password = remember{
-        mutableStateOf("")
-    }
     LoginFields(
-        name = name.value,
-        password = password.value,
-        onNameChange = {name.value = it},
-        onPasswordChange = {password.value = it},
-        onLoginClick = onClick,
-        onRegisterClick = onRegister
+        name = vm.codigo.value,
+        password = vm.contra.value,
+        onNameChange = {vm.codigo.value = it},
+        onPasswordChange = {vm.contra.value = it},
+        onLoginClick = { vm.login() },
+        onRegisterClick =   onRegister
     )
 }
 
