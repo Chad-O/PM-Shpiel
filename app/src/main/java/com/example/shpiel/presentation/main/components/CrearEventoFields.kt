@@ -10,9 +10,18 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.shpiel.presentation.login.components.CustomTextField
 
 @Composable
 fun CrearEventoFields(
+    titulo: String,
+    cantidad: String,
+    descripcion: String,
+    onTituloChange: (String) -> Unit,
+    onCantidadChange: (String)-> Unit,
+    onDescripcionChange:  (String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -21,15 +30,39 @@ fun CrearEventoFields(
     ) {
         Row(modifier = Modifier
             .fillMaxWidth()
-            .weight(1.0f),
+            .weight(1.0f)
+            .padding(top = 30.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically)
             {
-            Text(text = "Evento", color = Color.White)
+            Text(
+                text = "Evento",
+                color = Color.White,
+                fontSize = 40.sp
+            )
         }
         Row(modifier = Modifier
             .fillMaxWidth()
             .weight(8.0f)){
+            Column(
+                modifier = Modifier.padding(top = 40.dp)
+            ) {
+                CustomTextField(
+                    value = titulo,
+                    onValueChange = onTituloChange,
+                    label = "Titulo del evento"
+                )
+                CustomTextField(
+                    value = cantidad,
+                    onValueChange = onCantidadChange,
+                    label = "Titulo del evento"
+                )
+                CustomTextField(
+                    value = descripcion,
+                    onValueChange = onDescripcionChange,
+                    label = "Titulo del evento"
+                )
+            }
 
         }
         Row(modifier = Modifier
@@ -43,5 +76,12 @@ fun CrearEventoFields(
 @Preview(showBackground = true)
 @Composable
 fun prev() {
-    CrearEventoFields()
+    CrearEventoFields(
+        titulo = "Val",
+        cantidad = "2",
+        descripcion = "Descr",
+        onTituloChange = {},
+        onCantidadChange = {},
+        onDescripcionChange = {}
+    )
 }
