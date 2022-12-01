@@ -1,4 +1,4 @@
-package com.example.shpiel.presentation.main.components
+package com.example.shpiel.presentation.main.components.crearEvento
 
 import android.media.Image
 import androidx.compose.material.icons.Icons
