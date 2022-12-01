@@ -10,5 +10,5 @@ import com.example.shpiel.presentation.main.components.CrearEventoFields
 
 @Composable
 fun CrearEvento() {
-    CrearEventoFields()
+
 }

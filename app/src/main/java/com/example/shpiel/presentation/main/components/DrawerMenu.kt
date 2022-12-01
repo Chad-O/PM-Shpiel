@@ -1,5 +1,6 @@
 package com.example.shpiel.presentation.main.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
@@ -8,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -22,17 +24,16 @@ fun DrawerMenu(
     navController: NavController,
     name: String?,
     onCloseDrawer: () -> Unit,
-    onChangeTitle: (String) -> Unit
 ){
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Row(
             modifier = Modifier
                 .fillMaxWidth()
         ){
             //Por cambiar
-            Icon(Icons.Rounded.Menu, contentDescription = "Menu")
             Text(
                 text = name!!,
                 modifier = Modifier
@@ -48,6 +49,10 @@ fun DrawerMenu(
                 .fillMaxWidth()
         ){
             Text(
+                modifier = Modifier
+                    .padding(vertical = 20.dp, horizontal = 25.dp)
+                    .clickable { navController.navigate("Principal")
+                               onCloseDrawer()},
                 text = "Principal"
             )
         }
@@ -55,6 +60,10 @@ fun DrawerMenu(
             modifier = Modifier.fillMaxWidth()
         ){
             Text(
+                modifier = Modifier
+                    .padding(vertical = 20.dp, horizontal = 25.dp)
+                    .clickable { navController.navigate("")
+                               onCloseDrawer() },
                 text = "Participaciones"
             )
         }

@@ -82,7 +82,7 @@ class FirebaseManager {
         desc : String,
         onSucces : () -> Unit,
         onError : () -> Unit
-    ){
+    ) {
         val event = hashMapOf(
             "titulo" to titulo,
             "deporte" to deporte,
@@ -94,8 +94,16 @@ class FirebaseManager {
             .addOnSuccessListener {
                 onSucces()
             }
-            .addOnFailureListener{ exception ->
+            .addOnFailureListener { exception ->
                 onError()
+            }
+    }
+
+    fun mapDeportes(){
+        db.collection("deportes")
+            .get()
+            .addOnSuccessListener{snapshot ->
+                println(snapshot.documents)
             }
     }
 }
