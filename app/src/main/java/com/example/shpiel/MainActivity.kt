@@ -34,20 +34,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        // TODO: IMPORTANTE, SE COMENTÓ LO DE ABAJO PORQUE ERA UNA PRUEBA.
-//        val db = Firebase.firestore
-//        val user = hashMapOf(
-//            "first" to "Ada",
-//            "last" to "Lovelace",
-//            "born" to 1815
-//        )
-//        db.collection("users")
-//            .add(user)
-//            .addOnSuccessListener { documentReference ->
-//                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-//            }
-//            .addOnFailureListener { e ->
-//                Log.w(TAG, "Error adding document", e)
-//            }
     }
 }
