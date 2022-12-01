@@ -75,6 +75,30 @@ class FirebaseManager {
             }
     }
 
+    fun registrarEvento(
+        titulo : String,
+        deporte : String,
+        cantMax : Number,
+        desc : String,
+        onSucces : () -> Unit,
+        onError : () -> Unit
+    ) {
+        val event = hashMapOf(
+            "titulo" to titulo,
+            "deporte" to deporte,
+            "cantMax" to cantMax,
+            "desc" to desc
+        )
+        db.collection("events")
+            .add(event)
+            .addOnSuccessListener {
+                onSucces()
+            }
+            .addOnFailureListener { exception ->
+                onError()
+            }
+    }
+
     fun mapDeportes(){
         db.collection("deportes")
             .get()

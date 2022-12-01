@@ -56,8 +56,8 @@ fun ListaDyn(
                 modifier = Modifier.weight(1f)
                     .padding(end = 4.dp),
                 onClick = {
-                    if(textState.value === " " || textState.value === "" && listaParticipantes.size <= cantidad.toInt()) {
-                        /*No me salía la validación al reves ¯\_(ツ)_/¯ */
+                    if(textState.value.trim() == "" && listaParticipantes.size <= cantidad.toInt()) {
+                        println("Validación funciona")
                     }else{
                         listaParticipantes.add(textState.value)
                         textState.value = ""
