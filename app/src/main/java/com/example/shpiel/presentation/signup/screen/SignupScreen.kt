@@ -4,35 +4,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.shpiel.presentation.login.viewmodels.LoginViewModel
+import com.example.shpiel.presentation.login.viewmodels.LoginViewModelFactory
 import com.example.shpiel.presentation.signup.components.SignupFields
+import com.example.shpiel.presentation.signup.viewmodels.SignupViewModel
+import com.example.shpiel.presentation.signup.viewmodels.SignupViewModelFactory
 
 @Composable
 fun SignupScreen(
-    onClick: () -> Unit
+    onClick: (String) -> Unit,
+    vm : SignupViewModel = viewModel( factory =  SignupViewModelFactory(onClick))
 ) {
-    val mcontext = LocalContext.current;
-    var name = remember{
-        mutableStateOf("")
-    }
-    var codigo = remember{
-        mutableStateOf("")
-    }
-    var alias = remember{
-        mutableStateOf("")
-    }
-    var password = remember{
-        mutableStateOf("")
-    }
     SignupFields(
-        codigo = codigo.value,
-        name = name.value,
-        alias = alias.value,
-        password = password.value,
-        onCodigoChange = {codigo.value = it},
-        onNameChange = {name.value = it},
-        onAliasChange = {alias.value = it},
-        onPasswordChange = {password.value = it},
-        onClick = onClick
-
+        codigo = vm.codigo.value,
+        name = vm.nombre.value,
+        alias = vm.alias.value,
+        password = vm.contra.value,
+        onCodigoChange = {vm.codigo.value = it},
+        onNameChange = {vm.nombre.value = it},
+        onAliasChange = {vm.alias.value = it},
+        onPasswordChange = {vm.contra.value = it},
+        onClick = { vm.Signup() }
     )
 }

@@ -16,13 +16,12 @@ class LoginActivity : ComponentActivity() {
         }
     }
      private val pasoMain: (String) -> Unit = {
-         print("FUNCION")
+         intent.putExtra("codigo", it);
          val intent = Intent(this, MainActivity::class.java);
          startActivity ( intent );
          finish();
     }
     private val pasoSignup: () -> Unit = {
-        print("FUNCION")
         val intent = Intent(this, SignupActivity::class.java);
         startActivity(intent);
     }

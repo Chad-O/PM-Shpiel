@@ -13,7 +13,7 @@ class SignupActivity:ComponentActivity() {
             SignupScreen(onClick = paso)
         }
     }
-    val paso:() -> Unit = {
+    val paso:(String) -> Unit = {
         val intent = Intent(this, MainActivity::class.java);
         startActivity(intent);
     }

@@ -23,14 +23,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ShpielTheme {
-                var name : String? = intent.getStringExtra("name");
+                var codigo : String? = intent.getStringExtra("codigo");
                 // MainViewModel= name!!;
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Navegacion(name = name)
+                    Navegacion(name = codigo)
                 }
             }
         }
