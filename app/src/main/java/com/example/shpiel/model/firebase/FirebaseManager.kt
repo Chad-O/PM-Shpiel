@@ -1,5 +1,8 @@
 package com.example.shpiel.model.firebase
 
+import androidx.compose.animation.core.snap
+import androidx.compose.runtime.Composable
+import com.google.android.gms.common.server.converter.StringToIntConverter
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -48,17 +51,23 @@ class FirebaseManager {
     fun login(
         codigo: String,
         contra: String,
-        onSucces: (String) -> Unit,
-        onError: (String) -> Unit
+        onSuccess: (String) -> Unit,
+        onError:  (String) -> Unit
     ){
+
         db.collection("users")
-            .whereEqualTo("codigo", codigo)
+            .whereEqualTo("codigo", codigo.toInt())
             .whereEqualTo("contra" , contra)
             .get()
             .addOnSuccessListener { snapshot ->
+                println(snapshot.documents)
                 if(snapshot.size() > 0){
                     val codigo = snapshot.documents[0].data!!.get("codigo")!!.toString();
-                    onSucces(codigo)
+                    onSuccess(codigo)
+                }else{
+                    println(codigo)
+                    println(contra)
+                    println("No se ha encontrado")
                 }
             }
             .addOnFailureListener{

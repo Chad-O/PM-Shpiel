@@ -12,16 +12,16 @@ class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContent{
-            LoginScreen(onClick = pasoMain, onRegister = pasoSignup)
+            LoginScreen(onLoginSuccess = pasoMain, onRegister = pasoSignup)
         }
     }
-     private val pasoMain: () -> Unit = {
-         print("FUNCION")
+     private val pasoMain: (String) -> Unit = {
+         intent.putExtra("codigo", it);
          val intent = Intent(this, MainActivity::class.java);
          startActivity ( intent );
+         finish();
     }
     private val pasoSignup: () -> Unit = {
-        print("FUNCION")
         val intent = Intent(this, SignupActivity::class.java);
         startActivity(intent);
     }
