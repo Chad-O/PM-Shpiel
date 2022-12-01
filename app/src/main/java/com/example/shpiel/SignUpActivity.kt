@@ -10,12 +10,11 @@ class SignupActivity:ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContent{
-            SignupScreen()
+            SignupScreen(onClick = paso)
         }
     }
-    val paso:(String) -> Unit = {
-            name:String -> val intent = Intent(this, MainActivity::class.java);
+    val paso:() -> Unit = {
+        val intent = Intent(this, MainActivity::class.java);
         startActivity(intent);
-        finish()
     }
 }

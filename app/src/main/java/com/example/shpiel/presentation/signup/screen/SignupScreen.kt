@@ -8,7 +8,7 @@ import com.example.shpiel.presentation.signup.components.SignupFields
 
 @Composable
 fun SignupScreen(
-    onClick: (String) -> Unit = {}
+    onClick: () -> Unit
 ) {
     val mcontext = LocalContext.current;
     var name = remember{
@@ -31,6 +31,8 @@ fun SignupScreen(
         onCodigoChange = {codigo.value = it},
         onNameChange = {name.value = it},
         onAliasChange = {alias.value = it},
-        onPasswordChange = {password.value = it}
+        onPasswordChange = {password.value = it},
+        onClick = onClick
+
     )
 }
