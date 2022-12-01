@@ -1,62 +1,73 @@
 package com.example.shpiel.presentation.main.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme.colors
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MyUI(
-    
-) {
-    val listItems = arrayOf("Favorites", "Options", "Settings", "Share")
-    var selectedItem = remember {
-        mutableStateOf("")
-    }
-    var expanded =  remember {
-        mutableStateOf(false)
-    }
-
-    ExposedDropdownMenuBox(
-        expanded = expanded.value,
-        onExpandedChange = {
-            expanded.value = !expanded.value
-        }
-    ) {
-        TextField(
-            value = selectedItem.value,
-            onValueChange = { selectedItem.value = it },
-            label =  "Label",
-            trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(
-                    expanded = expanded.value
-                )
-            },
-            colors = ExposedDropdownMenuDefaults.textFieldColors()
-        )
-
-        // filter options based on text field value
-        val filteringOptions =
-            listItems.filter { it.contains(selectedItem.value, ignoreCase = true) }
-
-        if (filteringOptions.isNotEmpty()) {
-
-            ExposedDropdownMenu(
-                expanded = expanded.value,
-                onDismissRequest = { expanded.value = false }
-            ) {
-                filteringOptions.forEach { selectionOption ->
+fun CustomDropDownBox(stateHolder: ExposedDropMenuStateHolder) {
+    Column (modifier = Modifier.padding(start = 50.dp)){
+        Box {
+            TextField(
+                value = stateHolder.value,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                readOnly = true,
+                onValueChange = {},
+                label = { Text(text = "Deportes") },
+                trailingIcon = {
+                    Icon(painter = painterResource(
+                        id = stateHolder.icon
+                    ),
+                        contentDescription = null,
+                        modifier = Modifier.clickable {
+                            stateHolder.onEnable(!stateHolder.enabled)
+                        }
+                    )
+                },
+                modifier = Modifier.onGloballyPositioned {
+                    stateHolder.onSize(it.size.toSize())
+                }
+                    .padding(bottom = 10.dp)
+            )
+            DropdownMenu(
+                expanded = stateHolder.enabled,
+                onDismissRequest = {
+                    stateHolder.onEnable(false)
+                },
+            modifier = Modifier
+                .width(with(LocalDensity.current)
+            {stateHolder.size.width.toDp()})
+            )
+            {
+                stateHolder.items.forEachIndexed{index, s ->
                     DropdownMenuItem(
                         onClick = {
-                            selectedItem = selectionOption
-                            expanded.value = false
+                            stateHolder.onSelectedIndex(index)
+                            stateHolder.onEnable(false)
                         }
                     ) {
-                        Text(text = selectionOption)
+                        Text(text = s)
                     }
                 }
             }
         }
     }
+
 }

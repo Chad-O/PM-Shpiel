@@ -13,14 +13,13 @@ import com.example.shpiel.presentation.main.screen.Posteo
 @Composable
 fun NavigationGraph(
     navController : NavHostController,
-    codigo : String
 ){
     NavHost(
         navController = navController,
         startDestination = "Principal"
     ){
         composable("Principal"){
-            Principal()
+            Principal(navController)
         }
         composable("Busqueda"){
             Busqueda()

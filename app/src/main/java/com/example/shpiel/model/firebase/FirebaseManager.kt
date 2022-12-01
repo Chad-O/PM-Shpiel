@@ -74,4 +74,12 @@ class FirebaseManager {
                 onError(codigo);
             }
     }
+
+    fun mapDeportes(){
+        db.collection("deportes")
+            .get()
+            .addOnSuccessListener{snapshot ->
+                println(snapshot.documents)
+            }
+    }
 }

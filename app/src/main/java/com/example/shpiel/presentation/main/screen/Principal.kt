@@ -16,11 +16,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 @Preview
 @Composable
-fun Principal(){
-
+fun Principal(
+    navController: NavHostController
+){
     Row(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -29,7 +32,7 @@ fun Principal(){
                 .weight(1f)
                 .background(color = Color(red = 99, green = 24,blue=120))
                 .fillMaxHeight()
-                .clickable {  },
+                .clickable {  navController.navigate("Posteo") },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ){
@@ -46,7 +49,7 @@ fun Principal(){
                 .weight(1f)
                 .background(color = Color(red = 122, green = 22, blue = 60))
                 .fillMaxHeight()
-                .clickable {  },
+                .clickable { },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
 

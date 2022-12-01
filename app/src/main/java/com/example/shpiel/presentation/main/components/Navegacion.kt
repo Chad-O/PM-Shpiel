@@ -7,17 +7,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.shpiel.presentation.main.navigation.NavigationGraph
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
 
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun Navegacion(
-    name: String?
+    name: String?,
 ){
     val navController = rememberNavController()
+    MainViewModel.navController=navController
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -35,9 +39,6 @@ fun Navegacion(
             scaffoldState.drawerState.close()
         }
     }
-    var changeTitle: (String) -> Unit = {
-        nTitle -> name.value = nTitle
-    }
 
     Scaffold (
         scaffoldState = scaffoldState,
@@ -50,7 +51,7 @@ fun Navegacion(
             DrawerMenu(
                 navController = navController,
                 onCloseDrawer = closeDrawer,
-                onChangeTitle = changeTitle,
+
                 name = name.value
             )
         }
@@ -58,7 +59,6 @@ fun Navegacion(
     {
         NavigationGraph(
             navController = navController,
-            codigo = name.value!!,
         )
     }
 }
