@@ -32,7 +32,7 @@ fun Principal(
                 .weight(1f)
                 .background(color = Color(red = 99, green = 24,blue=120))
                 .fillMaxHeight()
-                .clickable {  navController.navigate("Posteo") },
+                .clickable {  navController.navigate("CrearEvento") },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ){

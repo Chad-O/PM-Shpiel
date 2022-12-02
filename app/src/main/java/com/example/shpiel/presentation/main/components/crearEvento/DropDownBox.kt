@@ -20,9 +20,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import com.example.shpiel.presentation.main.components.crearEvento.ExposedDropMenuStateHolder
 
 @Composable
-fun CustomDropDownBox(stateHolder: ExposedDropMenuStateHolder) {
+fun CustomDropDownBox(stateHolder: ExposedDropMenuStateHolder, onDeporteChange : (String) -> Unit) {
     Column (modifier = Modifier.padding(start = 50.dp)){
         Box {
             TextField(
@@ -59,7 +60,7 @@ fun CustomDropDownBox(stateHolder: ExposedDropMenuStateHolder) {
                 stateHolder.items.forEachIndexed{index, s ->
                     DropdownMenuItem(
                         onClick = {
-                            stateHolder.onSelectedIndex(index)
+                            stateHolder.onSelectedIndex(index , onDeporteChange)
                             stateHolder.onEnable(false)
                         }
                     ) {

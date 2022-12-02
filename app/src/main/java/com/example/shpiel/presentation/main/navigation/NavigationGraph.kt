@@ -1,13 +1,14 @@
 package com.example.shpiel.presentation.main.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
 import com.example.shpiel.presentation.main.screen.Principal
 import com.example.shpiel.presentation.main.screen.Busqueda
-import com.example.shpiel.presentation.main.screen.Posteo
+import com.example.shpiel.presentation.main.screen.CrearEvento
+import com.example.shpiel.presentation.main.screen.EventoCreado
 
 
 @Composable
@@ -24,8 +25,13 @@ fun NavigationGraph(
         composable("Busqueda"){
             Busqueda()
         }
-        composable("Posteo"){
-            Posteo()
+        composable("CrearEvento"){
+            CrearEvento({
+                navController.navigate("EventoCreado")
+            })
+        }
+        composable("EventoCreado"){
+            EventoCreado()
         }
     }
 }

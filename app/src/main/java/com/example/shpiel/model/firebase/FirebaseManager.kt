@@ -60,10 +60,10 @@ class FirebaseManager {
             .whereEqualTo("contra" , contra)
             .get()
             .addOnSuccessListener { snapshot ->
-                println(snapshot.documents)
                 if(snapshot.size() > 0){
-                    val codigo = snapshot.documents[0].data!!.get("codigo")!!.toString();
-                    onSuccess(codigo)
+//                    val codigo = snapshot.documents[0].data!!.get("codigo")!!.toString();
+                    val id = snapshot.documents[0].id
+                    onSuccess(id)
                 }else{
                     println(codigo)
                     println(contra)
@@ -75,6 +75,7 @@ class FirebaseManager {
             }
     }
 
+    // todo: Falta agregar quien crea el evento
     fun registrarEvento(
         titulo : String,
         deporte : String,

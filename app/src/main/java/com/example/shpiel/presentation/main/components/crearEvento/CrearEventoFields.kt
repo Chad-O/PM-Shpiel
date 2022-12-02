@@ -17,15 +17,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.presentation.login.components.CustomTextField
+import com.example.shpiel.presentation.main.components.crearEvento.rememberExposedMenuStateHolder
 
 @Composable
 fun CrearEventoFields(
     titulo: String,
-    cantidad: String,
+    cantidad: Int?,
     descripcion: String,
+    deporte: String,
     onTituloChange: (String) -> Unit,
     onCantidadChange: (String)-> Unit,
-    onDescripcionChange:  (String) -> Unit
+    onDescripcionChange:  (String) -> Unit,
+    onDeporteChange: (String) -> Unit,
+    onCrearEvento : () -> Unit
 ) {
     val stateHolder = rememberExposedMenuStateHolder()
 
@@ -61,9 +65,9 @@ fun CrearEventoFields(
                     onValueChange = onTituloChange,
                     label = "Titulo del evento"
                 )
-                CustomDropDownBox(stateHolder = stateHolder)
+                CustomDropDownBox(stateHolder = stateHolder , onDeporteChange = onDeporteChange)
                 CustomTextField(
-                    value = cantidad,
+                    value = cantidad.toString(),
                     onValueChange = onCantidadChange,
                     label = "Cantidad de personas"
                 )
@@ -73,7 +77,7 @@ fun CrearEventoFields(
                     onValueChange = onDescripcionChange,
                     label = "Descripcion"
                 )
-                ListaDyn(cantidad)
+                ListaDyn(cantidad.toString())
             }
 
         }
@@ -83,7 +87,9 @@ fun CrearEventoFields(
             Button(
                 modifier = Modifier.fillMaxWidth()
                     .padding(horizontal = 30.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                          onCrearEvento();
+                },
             ) {
                Text(text = "Publicar")
             }
@@ -96,10 +102,13 @@ fun CrearEventoFields(
 fun prev() {
     CrearEventoFields(
         titulo = "Val",
-        cantidad = "2",
+        cantidad = 2,
         descripcion = "Descr",
+        deporte = "basket",
+        onDeporteChange = {},
         onTituloChange = {},
         onCantidadChange = {},
-        onDescripcionChange = {}
+        onDescripcionChange = {},
+        onCrearEvento = {}
     )
 }

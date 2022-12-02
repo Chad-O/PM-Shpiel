@@ -11,8 +11,8 @@ import com.example.shpiel.model.firebase.FirebaseManager
 import com.google.firebase.ktx.Firebase
 import com.google.gson.annotations.Expose
 
-class ExposedDropMenuStateHolder {
-
+class ExposedDropMenuStateHolder (
+){
     var enabled by mutableStateOf(false)
     var value by mutableStateOf("")
     var selectedIndex by mutableStateOf(-1)
@@ -30,9 +30,10 @@ class ExposedDropMenuStateHolder {
     fun onEnable(newVal:Boolean){
         enabled = newVal
     }
-    fun onSelectedIndex(newVal:Int){
+    fun onSelectedIndex(newVal:Int, onDeporteChange: (String) -> Unit){
         selectedIndex = newVal
         value = items[selectedIndex]
+        onDeporteChange(value);
     }
     fun onSize(newVal:Size){
         size = newVal
@@ -40,6 +41,7 @@ class ExposedDropMenuStateHolder {
 }
 
 @Composable
-fun rememberExposedMenuStateHolder() = remember() {
+fun rememberExposedMenuStateHolder(
+) = remember() {
     ExposedDropMenuStateHolder()
 }
