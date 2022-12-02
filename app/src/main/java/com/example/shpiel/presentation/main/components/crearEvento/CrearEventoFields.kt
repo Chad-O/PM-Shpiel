@@ -77,11 +77,6 @@ fun CrearEventoFields(
                     label = "Descripcion"
                 )
                 CustomTextField(
-                    value = fecha.value   ,
-                    onValueChange = {fecha.value = it},
-                    label = "Fecha dd/mm/yyyyy",
-                )
-                CustomTextField(
                     value = hora.value,
                     onValueChange = {hora.value = it},
                     label = "Hora: xx am/pm"
