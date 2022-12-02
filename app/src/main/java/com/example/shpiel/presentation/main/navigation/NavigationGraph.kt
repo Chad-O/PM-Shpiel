@@ -34,7 +34,7 @@ fun NavigationGraph(
             }
         }
         composable("DetalleBusqueda"){
-            Detalle(evento = Evento)
+            Detalle()
         }
     }
 }

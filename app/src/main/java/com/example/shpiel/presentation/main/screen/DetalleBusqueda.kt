@@ -16,7 +16,7 @@ import com.example.shpiel.presentation.main.components.Fila
 
 @Composable
 fun Detalle(
-    evento: Evento ,
+    evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3")),
 ){
     val tamPar = evento.participantes.size
     Column(modifier = Modifier
