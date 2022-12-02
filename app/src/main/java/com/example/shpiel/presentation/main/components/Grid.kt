@@ -23,7 +23,9 @@ import com.google.gson.Gson
 fun Header(
     titulo: String = "Titulo",
     deporte: String = "Deporte",
-    hora: String = "Hora"
+    hora: String = "Hora",
+    onOrderDeporte: () -> Unit,
+    onOrderhora: () -> Unit
 ){
     Row(modifier = Modifier
         .fillMaxWidth()
@@ -47,7 +49,10 @@ fun Header(
             modifier = Modifier
                 .weight(2f)
                 .border(BorderStroke(1.dp, Color.Black))
-                .size(80.dp),
+                .size(80.dp)
+                .clickable {
+                    onOrderDeporte()
+                },
             contentAlignment = Alignment.Center
         ){
             Text(
@@ -59,7 +64,10 @@ fun Header(
             modifier = Modifier
                 .weight(1.5f)
                 .border(BorderStroke(1.dp, Color.Black))
-                .size(80.dp),
+                .size(80.dp)
+                .clickable {
+                    onOrderhora()
+                },
             contentAlignment = Alignment.Center
         ){
             Text(
