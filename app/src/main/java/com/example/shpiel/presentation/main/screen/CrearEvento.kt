@@ -19,10 +19,15 @@ fun CrearEvento(
         cantidad = vm.cantidad.value,
         descripcion = vm.descripcion.value,
         deporte = vm.deporte.value,
+        participantes = vm.participantes,
         onDeporteChange = {vm.deporte.value = it },
         onTituloChange = {vm.titulo.value = it},
-        onCantidadChange = {vm.cantidad.value = it.toInt()},
+        onCantidadChange = {vm.cantidad.value = it},
         onDescripcionChange = {vm.descripcion.value = it},
-        onCrearEvento = {vm.crearEvento()}
+        onCrearEvento = {vm.crearEvento()},
+        onAddParticipante = {vm.participantes.add(it)},
+        onRemoveParticipante = {
+            if(vm.participantes.size > 0) vm.participantes.removeAt(vm.participantes.size-1)
+        }
     )
 }
