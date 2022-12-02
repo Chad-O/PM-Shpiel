@@ -120,7 +120,7 @@ fun Fila(
             contentAlignment = Alignment.Center
         ){
             Text(
-                text = evento.descripcion ,
+                text = evento.deporte ,
                 fontSize = 15.sp
             )
         }
