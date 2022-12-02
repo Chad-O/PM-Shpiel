@@ -55,5 +55,11 @@ fun NavigationGraph(
             val evento = gson.fromJson(eventoJson, Evento::class.java);
             DetalleParticipante(evento)
         }
+        composable("DetalleSolicitante/evento={evento}"){
+            val eventoJson = it.arguments?.getString("evento");
+            val gson = Gson();
+            val evento = gson.fromJson(eventoJson, Evento::class.java);
+            DetalleSolicitante(evento)
+        }
     }
 }

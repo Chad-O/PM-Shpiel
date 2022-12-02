@@ -11,12 +11,14 @@ import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.presentation.main.components.Fila
 import com.example.shpiel.presentation.main.components.Header
 import com.example.shpiel.presentation.main.components.filaPart
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
 
 @Composable
 fun Participaciones(){
     /*Pa Borrar compare*/
-    val evento1 = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3"))
-    val evento = listOf<Evento>(evento1)
+    val evento1 = Evento(titulo="Mio", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3") , idCreador = MainViewModel.usuario.value.id)
+    val evento2 = Evento(titulo="Tuyo", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf(MainViewModel.usuario.value.alias,"2","3") , idCreador = "sadasdas")
+    val evento = listOf<Evento>(evento1 , evento2)
 
     Column(
         modifier = Modifier

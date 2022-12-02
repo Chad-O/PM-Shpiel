@@ -7,17 +7,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.presentation.main.components.Fila
 import com.example.shpiel.presentation.main.components.Header
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
 
 @Composable
 fun Busqueda(
 ){
     /*Pa Borrar compare*/
-    val evento1 = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3"))
-    val evento = listOf<Evento>(evento1)
+
+    val evento1 = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3") , idCreador = MainViewModel.usuario.value.id)
+    val evento2 = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf(MainViewModel.usuario.value.alias,"2","3") , idCreador = "sadasdas")
+
+    // evento1 : yo lo he creado con mi cuenta
+    // evento2 : lo creo otro random, pero participo
+    val evento = listOf<Evento>(evento1 , evento2)
 
     Column(
         modifier = Modifier

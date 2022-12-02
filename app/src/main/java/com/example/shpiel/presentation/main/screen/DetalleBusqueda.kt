@@ -21,10 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.presentation.main.components.Fila
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
 
 @Composable
 fun Detalle(
-    evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3")),
+    evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3") , idCreador =  MainViewModel.usuario.value.id),
     onClick: ()->Unit
 ){
     val tamPar = evento.participantes.size
