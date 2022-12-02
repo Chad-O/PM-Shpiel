@@ -29,16 +29,31 @@ fun NavigationGraph(
                 navController.navigate("EventoCreado")
             })
         }
+        composable("EventoRegistrado"){
+            EventoRegistrado{
+                navController.navigate("Principal")
+            }
+        }
         composable("EventoCreado"){
             EventoCreado {
                 navController.navigate("Principal")
             }
         }
+        composable("Participaciones"){
+            Participaciones()
+        }
         composable("DetalleBusqueda/evento={evento}"){
             val eventoJson = it.arguments?.getString("evento");
             val gson = Gson();
             val evento = gson.fromJson(eventoJson, Evento::class.java);
-            Detalle(evento)
+            Detalle(evento) { navController.navigate("EventoRegistrado") }
+        }
+
+        composable("DetalleParticipante/evento={evento}"){
+            val eventoJson = it.arguments?.getString("evento");
+            val gson = Gson();
+            val evento = gson.fromJson(eventoJson, Evento::class.java);
+            DetalleParticipante(evento)
         }
     }
 }

@@ -148,6 +148,72 @@ fun Fila(
     }
 }
 
+@Composable
+fun filaPart(
+    evento: Evento
+){
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 20.dp)
+        .background(Color.LightGray).
+        clickable {
+            val gson = Gson();
+            val eventoJson = gson.toJson(evento);
+            println("DetalleParticipante/evento=${eventoJson}")
+            MainViewModel.navController.navigate(
+                "DetalleParticipante/evento=${eventoJson}"
+            )
+        },
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(2f)
+                .border(BorderStroke(1.dp, Color.Black))
+                .size(80.dp),
+            contentAlignment = Alignment.Center
+        ){
+            Text(
+                text = evento.titulo ,
+                fontSize = 30.sp
+            )
+        }
+        Box(
+            modifier = Modifier
+                .weight(2f)
+                .border(BorderStroke(1.dp, Color.Black))
+                .size(80.dp),
+            contentAlignment = Alignment.Center
+        ){
+            Text(
+                text = evento.descripcion ,
+                fontSize = 30.sp
+            )
+        }
+        Box(
+            modifier = Modifier
+                .weight(1.5f)
+                .border(BorderStroke(1.dp, Color.Black))
+                .size(80.dp),
+            contentAlignment = Alignment.Center
+        ){
+            Text(
+                text = evento.hora,
+                fontSize = 30.sp)
+        }
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .border(BorderStroke(1.dp, Color.Black))
+                .size(80.dp),
+            contentAlignment = Alignment.Center
+        ){
+            Text(
+                text = "${evento.participantes.size}/${evento.cantidad}"
+            )
+        }
+        println(evento)
+    }
+}
 @Preview
 @Composable
 fun pFila() {

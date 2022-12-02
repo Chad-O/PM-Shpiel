@@ -62,7 +62,7 @@ fun DrawerMenu(
             Text(
                 modifier = Modifier
                     .padding(vertical = 20.dp, horizontal = 25.dp)
-                    .clickable { navController.navigate("")
+                    .clickable { navController.navigate("Participaciones")
                                onCloseDrawer() },
                 text = "Participaciones"
             )

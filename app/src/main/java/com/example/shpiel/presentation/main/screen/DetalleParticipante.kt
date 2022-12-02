@@ -1,41 +1,35 @@
 package com.example.shpiel.presentation.main.screen
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.model.entity.Evento
-import com.example.shpiel.presentation.main.components.Fila
 
+//rgb(0, 78, 99)
 @Composable
-fun Detalle(
+fun DetalleParticipante(
     evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3")),
-    onClick: ()->Unit
 ){
     val tamPar = evento.participantes.size
     Column(modifier = Modifier
         .fillMaxSize()
-        .background(color = Color(red = 99, green = 24, blue = 120))) {
+        .background(color = Color(red = 0, green = 78, blue = 99))) {
         Row(modifier = Modifier
             .fillMaxWidth()
             .weight(2f)
-            ) {
-            Column(modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
                 .padding(vertical = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -47,35 +41,37 @@ fun Detalle(
                     Text(
                         text="Registro",
                         fontSize = 40.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(top = 20.dp),
                         textAlign = TextAlign.Center
                     )
                     TextField(
                         value = evento.titulo,
                         onValueChange = {},
-                        label={ Text(text = "Titulo")},
+                        label={ Text(text = "Titulo") },
                         readOnly = true,
                         modifier = Modifier.padding(vertical = 10.dp)
                     )
                     TextField(
                         value = evento.descripcion,
                         onValueChange = {},
-                        label={ Text(text = "Descripcion")},
+                        label={ Text(text = "Descripcion") },
                         readOnly = true,
                         modifier = Modifier.padding(vertical = 10.dp)
                     )
                     TextField(
                         value = evento.hora,
                         onValueChange = {},
-                        label={ Text(text = "Hora y Fecha")},
+                        label={ Text(text = "Hora y Fecha") },
                         readOnly = true,
                         modifier = Modifier.padding(vertical = 10.dp)
                     )
                     Text(
                         text="Participantes",
                         fontSize = 20.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(top = 20.dp),
                         textAlign = TextAlign.Center
                     )
@@ -85,8 +81,11 @@ fun Detalle(
 
                 }
                 Row(modifier = Modifier.padding(top=20.dp)) {
-                    Button(onClick = {onClick()}) {
-                        Text(text="Registrarse")
+                    Button(onClick = { /*TODO Eliminar evento*/ },
+                    modifier = Modifier.weight(2f)
+                        .padding(horizontal = 10.dp),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
+                        Text(text = "Eliminar")
                     }
                 }
             }

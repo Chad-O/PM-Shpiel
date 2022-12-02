@@ -27,7 +27,7 @@ fun ListaDyn(
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
     var textState = remember{ mutableStateOf("")}
-    var listaParticipantes = remember { mutableStateListOf("1","2") }
+    var listaParticipantes = remember { mutableStateListOf("") }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
