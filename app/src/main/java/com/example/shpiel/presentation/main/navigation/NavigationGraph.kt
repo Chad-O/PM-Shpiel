@@ -5,10 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.shpiel.presentation.main.screen.Principal
-import com.example.shpiel.presentation.main.screen.Busqueda
-import com.example.shpiel.presentation.main.screen.CrearEvento
-import com.example.shpiel.presentation.main.screen.EventoCreado
+import com.example.shpiel.model.entity.Evento
+import com.example.shpiel.presentation.main.screen.*
 
 
 @Composable
@@ -31,7 +29,12 @@ fun NavigationGraph(
             })
         }
         composable("EventoCreado"){
-            EventoCreado()
+            EventoCreado {
+                navController.navigate("Principal")
+            }
+        }
+        composable("DetalleBusqueda"){
+            Detalle(evento = Evento)
         }
     }
 }

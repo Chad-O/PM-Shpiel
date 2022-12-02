@@ -85,7 +85,8 @@ fun Fila(
     Row(modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 20.dp)
-        .background(Color.LightGray),
+        .background(Color.LightGray).
+        clickable {  },
     ) {
         Box(
             modifier = Modifier
