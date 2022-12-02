@@ -3,6 +3,7 @@ package com.example.shpiel.presentation.main.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,8 +27,6 @@ fun CrearEventoFields(
     cantidad: String,
     descripcion: String,
     deporte: String,
-    fecha: String,
-    hora: String,
     participantes: MutableList<String>,
     onAddParticipante: (String) -> Unit,
     onRemoveParticipante: () -> Unit,
@@ -34,12 +34,11 @@ fun CrearEventoFields(
     onCantidadChange: (String)-> Unit,
     onDescripcionChange:  (String) -> Unit,
     onDeporteChange: (String) -> Unit,
-    onFechaChange: (String) -> Unit,
-    onHoraChange: (String) -> Unit,
     onCrearEvento : () -> Unit
 ) {
     val stateHolder = rememberExposedMenuStateHolder()
-
+    var hora = remember{mutableStateOf("")}
+    var fecha = remember{mutableStateOf("")}
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -77,23 +76,22 @@ fun CrearEventoFields(
                     onValueChange = onDescripcionChange,
                     label = "Descripcion"
                 )
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    CustomTextField(
-                        value = fecha   ,
-                        onValueChange = onCantidadChange,
-                        label = "Fecha dd/mm/yyyyy"
-                    )
-                    CustomTextField(
-                        value = hora,
-                        onValueChange = onHoraChange,
-                        label = "Hora: xx am/pm"
-                    )
-                }
+                CustomTextField(
+                    value = fecha.value   ,
+                    onValueChange = {fecha.value = it},
+                    label = "Fecha dd/mm/yyyyy",
+                )
+                CustomTextField(
+                    value = hora.value,
+                    onValueChange = {hora.value = it},
+                    label = "Hora: xx am/pm"
+                )
                 CustomDropDownBox(stateHolder = stateHolder , onDeporteChange = onDeporteChange)
                 CustomTextField(
                     value = cantidad.toString(),
                     onValueChange = onCantidadChange,
-                    label = "Cantidad de personas"
+                    label = "Cantidad de personas",
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
 
 

@@ -101,7 +101,7 @@ fun Fila(
         ){
             Text(
                 text = evento.titulo ,
-                fontSize = 30.sp
+                fontSize = 15.sp
             )
         }
         Box(
@@ -113,7 +113,7 @@ fun Fila(
         ){
             Text(
                 text = evento.descripcion ,
-                fontSize = 30.sp
+                fontSize = 15.sp
             )
         }
         Box(
@@ -125,7 +125,7 @@ fun Fila(
         ){
             Text(
                 text = evento.hora,
-                fontSize = 30.sp)
+                fontSize = 15.sp)
         }
         Box(
             modifier = Modifier
@@ -179,7 +179,7 @@ fun filaPart(
         ){
             Text(
                 text = evento.titulo ,
-                fontSize = 30.sp
+                fontSize = 15.sp
             )
         }
         Box(
@@ -191,7 +191,7 @@ fun filaPart(
         ){
             Text(
                 text = evento.descripcion ,
-                fontSize = 30.sp
+                fontSize = 15.sp
             )
         }
         Box(
@@ -203,7 +203,7 @@ fun filaPart(
         ){
             Text(
                 text = evento.hora,
-                fontSize = 30.sp)
+                fontSize = 15.sp)
         }
         Box(
             modifier = Modifier
