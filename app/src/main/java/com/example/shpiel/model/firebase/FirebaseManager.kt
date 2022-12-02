@@ -2,6 +2,7 @@ package com.example.shpiel.model.firebase
 
 import androidx.compose.animation.core.snap
 import androidx.compose.runtime.Composable
+import com.example.shpiel.model.entity.User
 import com.google.android.gms.common.server.converter.StringToIntConverter
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -101,13 +102,21 @@ class FirebaseManager {
     }
 
     fun getUser(
-        id : String
-    ){
+        id : String,
+        onSuccess : (User) -> Unit
+    ) {
         db.collection("users")
             .document(id)
             .get()
-            .addOnSuccessListener(){ snapshot ->
-                snapshot
+            .addOnSuccessListener(){ it ->
+                val nombre = it.get("nombre")
+                val codigo = it.get("codigo")
+                val alias = it.get("alias")
+                val usuario = User(id = id, alias = alias.toString() , codigo = codigo.toString() , nombre = nombre.toString());
+                onSuccess(usuario!!)
+            }
+            .addOnFailureListener {
+                println("No se pudo obtener le usuario")
             }
     }
 
