@@ -15,9 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.model.entity.Evento
 
-//rgb(0, 78, 99)
 @Composable
-fun DetalleParticipante(
+fun DetalleSolicitante(
     evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3")),
 ){
     val tamPar = evento.participantes.size
@@ -39,7 +38,7 @@ fun DetalleParticipante(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(
-                        text="Evento(Participante)",
+                        text="Evento(Solicitante)",
                         fontSize = 40.sp,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -82,10 +81,10 @@ fun DetalleParticipante(
                 }
                 Row(modifier = Modifier.padding(top=20.dp)) {
                     Button(onClick = { /*TODO Eliminar evento*/ },
-                    modifier = Modifier.weight(2f)
-                        .padding(horizontal = 10.dp),
+                        modifier = Modifier.weight(2f)
+                            .padding(horizontal = 10.dp),
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
-                        Text(text = "Retirarse")
+                        Text(text = "Eliminar")
                     }
                 }
             }

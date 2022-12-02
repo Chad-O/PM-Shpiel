@@ -87,7 +87,6 @@ fun CrearEventoFields(
                     removeParticipante = onRemoveParticipante
                 )
             }
-
         }
         Row(modifier = Modifier
             .fillMaxWidth()

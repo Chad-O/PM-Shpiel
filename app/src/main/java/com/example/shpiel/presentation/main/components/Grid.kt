@@ -160,6 +160,7 @@ fun filaPart(
             val gson = Gson();
             val eventoJson = gson.toJson(evento);
             println("DetalleParticipante/evento=${eventoJson}")
+
             MainViewModel.navController.navigate(
                 "DetalleParticipante/evento=${eventoJson}"
             )
@@ -214,6 +215,8 @@ fun filaPart(
         println(evento)
     }
 }
+
+
 @Preview
 @Composable
 fun pFila() {
