@@ -1,6 +1,7 @@
 package com.example.shpiel.presentation.login.components
 
 import android.content.Intent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -23,6 +25,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.shpiel.R
 import com.example.shpiel.SignupActivity
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -67,7 +70,12 @@ fun LoginFields(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment =  Alignment.CenterHorizontally
             ) {
-                Text(text = "Row Imagen")
+                Image(
+                    painterResource(R.drawable.pajerete),
+                    contentDescription = "Shpiel",
+                    Modifier.size(size=200.dp)
+                        .padding(30.dp)
+                )
             }
         }
         Row (
