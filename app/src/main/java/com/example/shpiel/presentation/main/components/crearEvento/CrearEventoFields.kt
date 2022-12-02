@@ -25,6 +25,8 @@ fun CrearEventoFields(
     cantidad: String,
     descripcion: String,
     deporte: String,
+    fecha: String,
+    hora: String,
     participantes: MutableList<String>,
     onAddParticipante: (String) -> Unit,
     onRemoveParticipante: () -> Unit,
@@ -32,6 +34,8 @@ fun CrearEventoFields(
     onCantidadChange: (String)-> Unit,
     onDescripcionChange:  (String) -> Unit,
     onDeporteChange: (String) -> Unit,
+    onFechaChange: (String) -> Unit,
+    onHoraChange: (String) -> Unit,
     onCrearEvento : () -> Unit
 ) {
     val stateHolder = rememberExposedMenuStateHolder()
@@ -68,6 +72,23 @@ fun CrearEventoFields(
                     onValueChange = onTituloChange,
                     label = "Titulo del evento"
                 )
+                CustomTextField(
+                    value = descripcion,
+                    onValueChange = onDescripcionChange,
+                    label = "Descripcion"
+                )
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    CustomTextField(
+                        value = fecha   ,
+                        onValueChange = onCantidadChange,
+                        label = "Fecha dd/mm/yyyyy"
+                    )
+                    CustomTextField(
+                        value = hora,
+                        onValueChange = onHoraChange,
+                        label = "Hora: xx am/pm"
+                    )
+                }
                 CustomDropDownBox(stateHolder = stateHolder , onDeporteChange = onDeporteChange)
                 CustomTextField(
                     value = cantidad.toString(),
@@ -75,11 +96,7 @@ fun CrearEventoFields(
                     label = "Cantidad de personas"
                 )
 
-                CustomTextField(
-                    value = descripcion,
-                    onValueChange = onDescripcionChange,
-                    label = "Descripcion"
-                )
+
                 ListaDyn(
                     cantidad = cantidad.toString() ,
                     listaParticipantes = participantes ,
@@ -92,7 +109,8 @@ fun CrearEventoFields(
             .fillMaxWidth()
             .weight(1.0f)){
             Button(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = 30.dp),
                 onClick = {
                           onCrearEvento();
