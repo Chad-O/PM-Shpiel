@@ -12,6 +12,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,16 +20,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.presentation.main.components.Fila
 import com.example.shpiel.presentation.main.viewmodels.MainViewModel
+import com.example.shpiel.presentation.main.viewmodels.MainViewModelFactory
 
 @Composable
 fun Detalle(
-    evento: Evento = Evento(titulo="val", descripcion = "val", hora="val", cantidad = 2, participantes = arrayOf("1","2","3") , idCreador =  MainViewModel.usuario.value.id),
-    onClick: ()->Unit
+    id: String,
+    vm : MainViewModel = viewModel(factory = MainViewModelFactory()),
+    onClick : () -> Unit
 ){
-    val tamPar = evento.participantes.size
+    LaunchedEffect(key1 = true){
+        vm.getEvento(id)
+    }
+    val tamPar = vm.evento.value.participantes.size
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color(red = 99, green = 24, blue = 120))) {
@@ -36,7 +43,8 @@ fun Detalle(
             .fillMaxWidth()
             .weight(2f)
             ) {
-            Column(modifier = Modifier.fillMaxWidth()
+            Column(modifier = Modifier
+                .fillMaxWidth()
                 .padding(vertical = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -48,26 +56,27 @@ fun Detalle(
                     Text(
                         text="Registro",
                         fontSize = 40.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(top = 20.dp),
                         textAlign = TextAlign.Center
                     )
                     TextField(
-                        value = evento.titulo,
+                        value = vm.evento.value.titulo,
                         onValueChange = {},
                         label={ Text(text = "Titulo")},
                         readOnly = true,
                         modifier = Modifier.padding(vertical = 10.dp)
                     )
                     TextField(
-                        value = evento.descripcion,
+                        value = vm.evento.value.descripcion,
                         onValueChange = {},
                         label={ Text(text = "Descripcion")},
                         readOnly = true,
                         modifier = Modifier.padding(vertical = 10.dp)
                     )
                     TextField(
-                        value = evento.hora,
+                        value = vm.evento.value.hora,
                         onValueChange = {},
                         label={ Text(text = "Hora y Fecha")},
                         readOnly = true,
@@ -76,17 +85,30 @@ fun Detalle(
                     Text(
                         text="Participantes",
                         fontSize = 20.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(top = 20.dp),
                         textAlign = TextAlign.Center
                     )
                     for(i in 0 until tamPar)
-                        Text(text = evento.participantes[i],
+                        Text(text = vm.evento.value.participantes[i],
                             modifier = Modifier.padding(top = 4.dp))
 
                 }
                 Row(modifier = Modifier.padding(top=20.dp)) {
-                    Button(onClick = {onClick()}) {
+                    Button(onClick = {
+                        val evento = vm.evento.value;
+                        if(evento.participantes.size <= evento.cantidad){
+                            vm.evento.value.participantes.add(MainViewModel.usuario.value.nombre)
+                            vm.updateParticipantesEvento(
+                                vm.evento.value,
+                                onClick
+                            )
+                        }
+                        else{
+                            println("no se puede agregar")
+                        }
+                    }) {
                         Text(text="Registrarse")
                     }
                 }

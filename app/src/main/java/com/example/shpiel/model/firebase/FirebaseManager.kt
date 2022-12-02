@@ -2,12 +2,15 @@ package com.example.shpiel.model.firebase
 
 import androidx.compose.animation.core.snap
 import androidx.compose.runtime.Composable
+import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.model.entity.User
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
 import com.google.android.gms.common.server.converter.StringToIntConverter
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.HashMap
 
 class FirebaseManager {
     val db : FirebaseFirestore
@@ -76,7 +79,6 @@ class FirebaseManager {
             }
     }
 
-    // todo: Falta agregar quien crea el evento
     fun registrarEvento(
         titulo : String,
         deporte : String,
@@ -111,6 +113,44 @@ class FirebaseManager {
             }
     }
 
+    fun getEventos(
+        onSucces: (Evento) -> Unit,
+        onError: () -> Unit
+    ){
+        db.collection("events")
+            .get()
+            .addOnSuccessListener{documents ->
+                documents.forEach{ doc ->
+                    val creador = doc.data["creador"] as HashMap<*, *>
+                    onSucces(Evento(
+                        idCreador = creador["id"]!! as String,
+                        id = doc.id,
+                        participantes = doc.data["participantes"]!! as ArrayList<String>,
+                        titulo = doc.data["titulo"]!! as String,
+                        deporte = doc.data["deporte"]!! as String,
+                        hora = "",
+                        cantidad = doc.data["cantMax"]!! as Long,
+                        descripcion =  doc.data["desc"] as String
+                    ))
+                }
+            }
+            .addOnFailureListener {
+                onError()
+            }
+    }
+
+    fun deleteEvent(
+        id : String,
+        onSucces: () -> Unit
+    ){
+        db.collection("events")
+            .document(id)
+            .delete()
+            .addOnSuccessListener(){
+                onSucces();
+            }
+    }
+
     fun getUser(
         id : String,
         onSuccess : (User) -> Unit
@@ -127,6 +167,34 @@ class FirebaseManager {
             }
             .addOnFailureListener {
                 println("No se pudo obtener le usuario")
+            }
+    }
+
+    fun getEvento(
+        id : String,
+        onSuccess : (Evento) -> Unit
+    ){
+        db.collection("events").document(id)
+            .get()
+            .addOnSuccessListener(){
+                onSuccess(Evento(
+                    idCreador = "XSDASdasdads",
+                    id = it.id,
+                    participantes = it.get("participantes")!! as ArrayList<String>,
+                    titulo = it.get("titulo")!! as String,
+                    deporte = it.get("deporte")!! as String,
+                    hora = "",
+                    cantidad = it.get("cantMax")!! as Long,
+                    descripcion =  it.get("desc") as String
+                ))
+            }
+    }
+
+    fun UpdateParticipantesEvento(evento:Evento , onSuccess : () -> Unit){
+        db.collection("events").document(evento.id)
+            .update("participantes" , evento.participantes)
+            .addOnSuccessListener{
+                onSuccess()
             }
     }
 

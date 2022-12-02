@@ -42,24 +42,27 @@ fun NavigationGraph(
         composable("Participaciones"){
             Participaciones()
         }
-        composable("DetalleBusqueda/evento={evento}"){
-            val eventoJson = it.arguments?.getString("evento");
-            val gson = Gson();
-            val evento = gson.fromJson(eventoJson, Evento::class.java);
-            Detalle(evento) { navController.navigate("EventoRegistrado") }
+        composable("DetalleBusqueda/id={id}"){
+            //val eventoJson = it.arguments?.getString("evento");
+            //val gson = Gson();
+            //val evento = gson.fromJson(eventoJson, Evento::class.java);
+            val id = it.arguments?.getString("id")
+            Detalle(id!!) { navController.navigate("EventoRegistrado") }
         }
 
-        composable("DetalleParticipante/evento={evento}"){
-            val eventoJson = it.arguments?.getString("evento");
-            val gson = Gson();
-            val evento = gson.fromJson(eventoJson, Evento::class.java);
-            DetalleParticipante(evento)
+        composable("DetalleParticipante/id={id}"){
+            //val eventoJson = it.arguments?.getString("evento");
+            //val gson = Gson();
+            // val evento = gson.fromJson(eventoJson, Evento::class.java);
+            val id = it.arguments?.getString("id")
+            DetalleParticipante(id!!)
         }
-        composable("DetalleSolicitante/evento={evento}"){
-            val eventoJson = it.arguments?.getString("evento");
-            val gson = Gson();
-            val evento = gson.fromJson(eventoJson, Evento::class.java);
-            DetalleSolicitante(evento)
+        composable("DetalleSolicitante/id={id}"){
+//            val eventoJson = it.arguments?.getString("evento");
+//            val gson = Gson();
+//            val evento = gson.fromJson(eventoJson, Evento::class.java);
+            val id = it.arguments?.getString(("id"));
+            DetalleSolicitante(id!!)
         }
     }
 }

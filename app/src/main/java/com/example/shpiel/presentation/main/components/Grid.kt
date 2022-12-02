@@ -87,11 +87,8 @@ fun Fila(
         .padding(horizontal = 20.dp)
         .background(Color.LightGray).
         clickable {
-            val gson = Gson();
-            val eventoJson = gson.toJson(evento);
-            println("DetalleBusqueda/evento=${eventoJson}")
             MainViewModel.navController.navigate(
-                "DetalleBusqueda/evento=${eventoJson}"
+                "DetalleBusqueda/id=${evento.id}"
             )
         },
     ) {
@@ -158,16 +155,17 @@ fun filaPart(
             val eventoJson = gson.toJson(evento);
             // Si yo lo he creado
             if(evento.idCreador == MainViewModel.usuario.value.id){
-                println("DetalleSolicitante/evento=${eventoJson}")
+                //println("DetalleSolicitante/evento=${eventoJson}")
                 MainViewModel.navController.navigate(
-                    "DetalleSolicitante/evento=${eventoJson}"
+                    "DetalleSolicitante/id=${evento.id}"
                 )
             }
             //si no lo he creado
             else{
-                println("DetalleParticipante/evento=${eventoJson}")
+
+                //println("DetalleParticipante/evento=${eventoJson}")
                 MainViewModel.navController.navigate(
-                    "DetalleParticipante/evento=${eventoJson}"
+                    "DetalleParticipante/id=${evento.id}"
                 )
             }
         },
