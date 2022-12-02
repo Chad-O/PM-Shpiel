@@ -20,7 +20,7 @@ class LoginViewModel(
             FirebaseManager.instance.login(
                 codigo.value,
                 contra.value,
-                onSuccess = { onLoginSuccess(codigo.value) },
+                onSuccess =  onLoginSuccess,
                 onError = {
                     println("Ha ocurrido un error al buscar al usuario" + codigo.value)
                 }

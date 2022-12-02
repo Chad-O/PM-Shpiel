@@ -16,8 +16,8 @@ class LoginActivity : ComponentActivity() {
         }
     }
      private val pasoMain: (String) -> Unit = {
-         intent.putExtra("codigo", it);
          val intent = Intent(this, MainActivity::class.java);
+         intent.putExtra("id", it);
          startActivity ( intent );
          finish();
     }

@@ -100,6 +100,17 @@ class FirebaseManager {
             }
     }
 
+    fun getUser(
+        id : String
+    ){
+        db.collection("users")
+            .document(id)
+            .get()
+            .addOnSuccessListener(){ snapshot ->
+                snapshot
+            }
+    }
+
     fun mapDeportes(){
         db.collection("deportes")
             .get()

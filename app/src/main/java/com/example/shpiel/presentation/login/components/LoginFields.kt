@@ -147,7 +147,6 @@ fun LoginFields(
                 Text(
                     text = "Registrate",
                     modifier = Modifier.clickable {
-                        println("suicidio")
                         onRegisterClick()
                     }
                 )

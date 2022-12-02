@@ -25,7 +25,7 @@ fun LoginScreen(
         onNameChange = {vm.codigo.value = it},
         onPasswordChange = {vm.contra.value = it},
         onLoginClick = { vm.login() },
-        onRegisterClick =   onRegister
+        onRegisterClick =  onRegister
     )
 }
 
