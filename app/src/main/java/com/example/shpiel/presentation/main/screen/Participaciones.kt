@@ -28,7 +28,7 @@ fun Participaciones(
     //val evento = listOf<Evento>(evento1 , evento2)
 
     LaunchedEffect(key1 = true){
-        vm.getEventos();
+        vm.getEventosPart();
     }
     Column(
         modifier = Modifier

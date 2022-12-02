@@ -54,6 +54,7 @@ class MainViewModel(
         }
     }
 
+
     fun getEvento(id:String){
         viewModelScope.launch {
             FirebaseManager.instance.getEvento(id = id){
@@ -66,7 +67,25 @@ class MainViewModel(
         listaEventos.clear();
         viewModelScope.launch {
             FirebaseManager.instance.getEventos(
-                { listaEventos.add(it)},
+                {
+                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
+                {}
+            )
+        }
+    }
+
+    fun getEventosPart(){
+        listaEventos.clear();
+        viewModelScope.launch {
+            FirebaseManager.instance.getEventos(
+                {
+                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
                 {}
             )
         }
