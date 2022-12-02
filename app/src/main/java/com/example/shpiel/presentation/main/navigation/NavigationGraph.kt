@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.shpiel.model.entity.Evento
 import com.example.shpiel.presentation.main.screen.*
+import com.google.gson.Gson
 
 
 @Composable
@@ -33,8 +34,11 @@ fun NavigationGraph(
                 navController.navigate("Principal")
             }
         }
-        composable("DetalleBusqueda"){
-            Detalle()
+        composable("DetalleBusqueda/evento={evento}"){
+            val eventoJson = it.arguments?.getString("evento");
+            val gson = Gson();
+            val evento = gson.fromJson(eventoJson, Evento::class.java);
+            Detalle(evento)
         }
     }
 }

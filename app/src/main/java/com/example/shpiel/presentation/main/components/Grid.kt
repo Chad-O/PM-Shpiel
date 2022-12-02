@@ -14,10 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.AndroidUiDispatcher
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.model.entity.Evento
+import com.example.shpiel.presentation.main.viewmodels.MainViewModel
+import com.google.gson.Gson
 
 @Composable
 fun Header(
@@ -86,7 +89,14 @@ fun Fila(
         .fillMaxWidth()
         .padding(horizontal = 20.dp)
         .background(Color.LightGray).
-        clickable {  },
+        clickable {
+            val gson = Gson();
+            val eventoJson = gson.toJson(evento);
+            println("DetalleBusqueda/evento=${eventoJson}")
+            MainViewModel.navController.navigate(
+                "DetalleBusqueda/evento=${eventoJson}"
+            )
+        },
     ) {
         Box(
             modifier = Modifier
