@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shpiel.presentation.login.components.CustomTextField
+import com.example.shpiel.presentation.main.components.crearEvento.rememberExposedMenuStateHolder
 
 @Composable
 fun CrearEventoFields(

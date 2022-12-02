@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
-@Preview
 @Composable
 fun Principal(
     navController: NavHostController
@@ -49,7 +48,7 @@ fun Principal(
                 .weight(1f)
                 .background(color = Color(red = 122, green = 22, blue = 60))
                 .fillMaxHeight()
-                .clickable { },
+                .clickable { navController.navigate("Busqueda")},
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
 
