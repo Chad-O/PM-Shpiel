@@ -22,9 +22,12 @@ import com.example.shpiel.presentation.main.components.crearEvento.rememberExpos
 @Composable
 fun CrearEventoFields(
     titulo: String,
-    cantidad: Int?,
+    cantidad: String,
     descripcion: String,
     deporte: String,
+    participantes: MutableList<String>,
+    onAddParticipante: (String) -> Unit,
+    onRemoveParticipante: () -> Unit,
     onTituloChange: (String) -> Unit,
     onCantidadChange: (String)-> Unit,
     onDescripcionChange:  (String) -> Unit,
@@ -77,7 +80,12 @@ fun CrearEventoFields(
                     onValueChange = onDescripcionChange,
                     label = "Descripcion"
                 )
-                ListaDyn(cantidad.toString())
+                ListaDyn(
+                    cantidad = cantidad.toString() ,
+                    listaParticipantes = participantes ,
+                    addParticipante = onAddParticipante,
+                    removeParticipante = onRemoveParticipante
+                )
             }
 
         }
@@ -97,6 +105,7 @@ fun CrearEventoFields(
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun prev() {
@@ -111,4 +120,4 @@ fun prev() {
         onDescripcionChange = {},
         onCrearEvento = {}
     )
-}
+}*/

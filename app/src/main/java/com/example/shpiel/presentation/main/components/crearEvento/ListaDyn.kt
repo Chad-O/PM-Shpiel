@@ -23,11 +23,13 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun ListaDyn(
-    cantidad: String
+    cantidad: String,
+    listaParticipantes: MutableList<String>,
+    addParticipante : (String) -> Unit,
+    removeParticipante : () -> Unit
 ){
     val keyboardController = LocalSoftwareKeyboardController.current
     var textState = remember{ mutableStateOf("")}
-    var listaParticipantes = remember { mutableStateListOf("1","2") }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -59,8 +61,9 @@ fun ListaDyn(
                     if(textState.value.trim() == "" && listaParticipantes.size <= cantidad.toInt()) {
                         println("Validación funciona")
                     }else{
-                        listaParticipantes.add(textState.value)
-                        textState.value = ""
+                        addParticipante(textState.value);
+                        /*listaParticipantes.add(textState.value)
+                        textState.value = ""*/
                     }
                 }
             ){
@@ -72,10 +75,7 @@ fun ListaDyn(
             Button(
                 modifier = Modifier.weight(1f),
                 onClick = {
-                    if(listaParticipantes.size > 0)
-                    {
-                        listaParticipantes.removeAt(listaParticipantes.size-1)
-                    }
+                    removeParticipante();
                 }
             ){
                 Text(
