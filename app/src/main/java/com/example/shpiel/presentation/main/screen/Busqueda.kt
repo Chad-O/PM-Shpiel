@@ -37,7 +37,7 @@ fun Busqueda(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ){
-            Header()
+            Header(onOrderDeporte = {vm.getEventosBuscabyDeporte()} , onOrderhora = {})
         }
         Column(modifier = Modifier.fillMaxWidth()) {
             LazyColumn(){

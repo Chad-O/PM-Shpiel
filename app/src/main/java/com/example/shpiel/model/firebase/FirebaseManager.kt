@@ -139,6 +139,33 @@ class FirebaseManager {
             }
     }
 
+    fun getEventosbyDeporte(
+        onSucces: (Evento) -> Unit,
+        onError: () -> Unit
+    ){
+        db.collection("events")
+            .orderBy("deporte")
+            .get()
+            .addOnSuccessListener{documents ->
+                documents.forEach{ doc ->
+                    val creador = doc.data["creador"] as HashMap<*, *>
+                    onSucces(Evento(
+                        idCreador = creador["id"]!! as String,
+                        id = doc.id,
+                        participantes = doc.data["participantes"]!! as ArrayList<String>,
+                        titulo = doc.data["titulo"]!! as String,
+                        deporte = doc.data["deporte"]!! as String,
+                        hora = "",
+                        cantidad = doc.data["cantMax"]!! as Long,
+                        descripcion =  doc.data["desc"] as String
+                    ))
+                }
+            }
+            .addOnFailureListener {
+                onError()
+            }
+    }
+
     fun deleteEvent(
         id : String,
         onSucces: () -> Unit

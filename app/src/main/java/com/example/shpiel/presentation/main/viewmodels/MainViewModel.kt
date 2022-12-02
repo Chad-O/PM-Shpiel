@@ -44,16 +44,6 @@ class MainViewModel(
         }
     }
 
-    fun getEventos(){
-        listaEventos.clear();
-        viewModelScope.launch {
-            FirebaseManager.instance.getEventos(
-                { listaEventos.add(it)},
-                {}
-            )
-        }
-    }
-
 
     fun getEvento(id:String){
         viewModelScope.launch {
@@ -90,6 +80,62 @@ class MainViewModel(
             )
         }
     }
+
+    fun getEventosPartbyDeporte(){
+        listaEventos.clear();
+        viewModelScope.launch {
+            FirebaseManager.instance.getEventosbyDeporte(
+                {
+                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
+                {}
+            )
+        }
+    }
+
+    fun getEventosBuscabyDeporte(){
+        listaEventos.clear();
+        viewModelScope.launch {
+            FirebaseManager.instance.getEventosbyDeporte(
+                {
+                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
+                {}
+            )
+        }
+    }
+
+   /* fun getEventosPartbyHora(){
+        listaEventos.clear();
+        viewModelScope.launch {
+            FirebaseManager.instance.getEventosbyHora(
+                {
+                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
+                {}
+            )
+        }
+    }
+
+    fun getEventosBuscabyHora(){
+        listaEventos.clear();
+        viewModelScope.launch {
+            FirebaseManager.instance.getEventosbyDeporte(
+                {
+                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.alias)){
+                        listaEventos.add(it)
+                    }
+                },
+                {}
+            )
+        }
+    }*/
 
     fun eliminarEvento(
         id : String,

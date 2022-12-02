@@ -42,7 +42,13 @@ fun Participaciones(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ){
-            Header()
+            Header(
+                onOrderDeporte = {
+                    vm.getEventosPartbyDeporte();
+                },
+                onOrderhora = {
+                }
+            )
         }
         Column(modifier = Modifier.fillMaxWidth()) {
             LazyColumn(){
