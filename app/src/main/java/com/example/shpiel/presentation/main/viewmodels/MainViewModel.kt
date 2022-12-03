@@ -58,7 +58,7 @@ class MainViewModel(
         viewModelScope.launch {
             FirebaseManager.instance.getEventos(
                 {
-                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.alias)){
+                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.nombre)){
                         listaEventos.add(it)
                     }
                 },
@@ -72,7 +72,7 @@ class MainViewModel(
         viewModelScope.launch {
             FirebaseManager.instance.getEventos(
                 {
-                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.alias)){
+                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.nombre)){
                         listaEventos.add(it)
                     }
                 },
@@ -86,7 +86,7 @@ class MainViewModel(
         viewModelScope.launch {
             FirebaseManager.instance.getEventosbyDeporte(
                 {
-                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.alias)){
+                    if(it.idCreador == usuario.value.id || it.participantes.contains(usuario.value.nombre)){
                         listaEventos.add(it)
                     }
                 },
@@ -100,7 +100,7 @@ class MainViewModel(
         viewModelScope.launch {
             FirebaseManager.instance.getEventosbyDeporte(
                 {
-                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.alias)){
+                    if(it.idCreador != usuario.value.id && !it.participantes.contains(usuario.value.nombre)){
                         listaEventos.add(it)
                     }
                 },
